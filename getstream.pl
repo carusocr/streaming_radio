@@ -4,6 +4,7 @@
 use Proc::Killall;
 use constant SRCCFG => '/mnt/data0/bin/streaming/getstream.xml';
 use constant SU => '/bin/su';
+use constant SU_NAME => 'zug';
 use constant CVLC => '/usr/bin/cvlc';
 use constant RECDIR => '/mnt/data0/streaming_sources';
 use constant CTRLHOST => 'localhost';
@@ -77,7 +78,7 @@ my @cvlc_args = ('--http-caching','3000',
 eval {
 
     my $ccc = sprintf("%s -l %s -c %s%s%s 2>&1 >%s",
-		      SU, 'walkerk','"', join(' ',CVLC,@cvlc_args), '"', "/dev/null" );
+		      SU, SU_NAME,'"', join(' ',CVLC,@cvlc_args), '"', "/dev/null" );
 
     $SIG{ALRM} = sub { 
 	my $rtn = killall('KILL',$ofil);
