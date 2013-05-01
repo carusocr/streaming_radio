@@ -24,5 +24,29 @@
     <ISOLangCode descr="iso639">slk</ISOLangCode>
     <VlcPort>6669</VlcPort>
   </SrcDef>
+  <SrcDef id="4">
+    <Src>mexico_pandashow</Src>
+    <Url descr="stream_url">http://s9.viastreaming.net:7210/</Url>
+    <ISOLangCode descr="iso639">spa</ISOLangCode>
+    <VlcPort>6670</VlcPort>
+  </SrcDef>
+  <SrcDef id="5">
+    <Src>colombia_unal</Src>
+    <Url descr="stream_url">http://streaming.unradio.unal.edu.co:8010/</Url>
+    <ISOLangCode descr="iso639">spa</ISOLangCode>
+    <VlcPort>6671</VlcPort>
+  </SrcDef>
+  <SrcDef id="6">
+    <Src>argentina_maipu</Src>
+    <Url descr="stream_url">http://live.slovakradio.sk:8000/Regina_BB_128.mp3</Url>
+    <ISOLangCode descr="iso639">spa</ISOLangCode>
+    <VlcPort>6672</VlcPort>
+  </SrcDef>
+  <SrcDef id="7">
+    <Src>spain_rne3</Src>
+    <Url descr="stream_url">http://195.10.10.207/rtve/radio3.mp3</Url>
+    <ISOLangCode descr="iso639">spa</ISOLangCode>
+    <VlcPort>6673</VlcPort>
+  </SrcDef>
 </SrcTbl>
 
