@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<SrcTbl>
+  <SrcDef id="0">
+    <Src>freqvence</Src>
+    <Url descr="stream_url">http://icecast4.play.cz/frekvence1-128.mp3</Url>
+    <ISOLangCode descr="iso639">ces</ISOLangCode>
+    <VlcPort>6666</VlcPort>
+  </SrcDef>
+  <SrcDef id="1">
+    <Src>radio_pohadka</Src>
+    <Url descr="stream_url">http://pes.limemedia.cz/cm_pohadka</Url>
+    <ISOLangCode descr="iso639">ces</ISOLangCode>
+    <VlcPort>6667</VlcPort>
+  </SrcDef>
+  <SrcDef id="2">
+    <Src>litera_live</Src>
+    <Url descr="stream_url">http://live.slovakradio.sk:8000/Litera_128.mp3</Url>
+    <ISOLangCode descr="iso639">slk</ISOLangCode>
+    <VlcPort>6668</VlcPort>
+  </SrcDef>
+  <SrcDef id="3">
+    <Src>banska_bystrica</Src>
+    <Url descr="stream_url">http://live.slovakradio.sk:8000/Regina_BB_128.mp3</Url>
+    <ISOLangCode descr="iso639">slk</ISOLangCode>
+    <VlcPort>6669</VlcPort>
+  </SrcDef>
+</SrcTbl>
+
