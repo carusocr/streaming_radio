@@ -2,11 +2,10 @@
 
 require 'nokogiri'
 
+sources = Hash.new
 doc = Nokogiri::XML(File.open("getstream.xml"))
-doc.collect_namespaces
-#puts doc
-doc.xpath('//SrcTbl/SrcDef').each do |node|
-	#puts node.xpath('Src')
+doc.xpath('//SrcDef').each do |node|
+	sources[:src] = node.xpath('Src').text
+	sources[:url] = node.xpath('Url').text
+#	puts sources[:src], sources[:url]
 end
-stream = doc.xpath('//Src'=> 'freqvence')
-puts stream
