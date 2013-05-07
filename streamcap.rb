@@ -18,13 +18,22 @@ How I understand the Perl script to work:
 
 require 'nokogiri'
 
+SU = '/bin/su'
+SU_NAME = 'walkerk'
+CVLC = '/usr/bin/cvlc'
 sources = Hash.new
 doc = Nokogiri::XML(File.open("getstream.xml"))
 doc.xpath('//SrcDef').each do |node|
 	node.xpath('./@id')
 	srcinfo = node.xpath('child::node()').text.split("\n")
-	sources["#{node.xpath('./@id')}"] = (srcinfo.reject{|x| x.strip.length==0})
+	srcinfo.map{|x| x.strip!}
+	sources["#{node.xpath('./@id')}"] = (srcinfo.reject{|x| x.length==0})
 end
 sources.keys.each do |s|
-	puts sources[s][2]
+	src_name = sources[s][0]
+	src_url = sources[s][1]
+	src_lang = sources[s][2]
+	src_port = sources[s][3]
+	cmd = "#{SU} -l #{SU_NAME} -c \"#{CVLC} --http-caching 3000 --codec ffmpeg #{src_url} --sout \" 2>&1 > /dev/null\n"
+	puts cmd
 end
