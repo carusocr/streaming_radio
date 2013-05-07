@@ -20,14 +20,9 @@ require 'nokogiri'
 
 sources = Hash.new
 doc = Nokogiri::XML(File.open("getstream.xml"))
-#doc.xpath('//SrcDef').each do |node|
-#doc.xpath('//SrcDef').children.each do |node|
-#	puts node.methods
-#	sources[:src] = node.xpath('Src').text
-#	sources[:url] = node.xpath('Url').text
-#	puts sources[:src], sources[:url]
-#end
-
-sources = doc.xpath('//SrcDef/child::node()').text.split("\n")
-#puts doc.xpath('//SrcDef/child::node()').text
-puts sources[2]
+doc.xpath('//SrcDef').each do |node|
+	node.xpath('./@id')
+	srcinfo = node.xpath('child::node()').text.split("\n")
+	sources["#{node.xpath('./@id')}"] = srcinfo
+end
+puts sources["1"]
