@@ -23,6 +23,8 @@ doc = Nokogiri::XML(File.open("getstream.xml"))
 doc.xpath('//SrcDef').each do |node|
 	node.xpath('./@id')
 	srcinfo = node.xpath('child::node()').text.split("\n")
-	sources["#{node.xpath('./@id')}"] = srcinfo
+	sources["#{node.xpath('./@id')}"] = (srcinfo.reject{|x| x.strip.length==0})
 end
-puts sources["1"]
+sources.keys.each do |s|
+	puts sources[s][2]
+end
