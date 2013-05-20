@@ -2,10 +2,10 @@
 
 
 use Proc::Killall;
-use constant SRCCFG => '/mnt/data0/bin/streaming/getstream.xml';
+use constant SRCCFG => '/lre14/bin/streaming/getstream.xml';
 use constant SU => '/bin/su';
 use constant CVLC => '/usr/bin/cvlc';
-use constant RECDIR => '/mnt/data0/streaming_sources';
+use constant RECDIR => '/mnt/drobo/12/streaming';
 use constant CTRLHOST => 'localhost';
 use constant RECDUR => 1700;
 
@@ -40,7 +40,14 @@ my %srctbl = (pubtalkctfm     => { stream_url => 'http://80.245.113.11:8004',
 	      bangla_betar    => { stream_url => 'http://www.betar.org.bd/New/newsb.mp3',
 				   iso639     => 'ben' },
 	      rj_israr        => { stream_url => 'http://64.202.98.132:6240',
-				   iso639     => 'urd' });
+				   iso639     => 'urd' },
+	mexico_pandashow	=> { stream_url => 'http://s9.viastreaming.net:7210',
+				     iso639   => 'spa' },
+	colombia_unal	=> { stream_url => 'http://streaming.unradio.unal.edu.co:8010',
+				     iso639   => 'spa' },
+	spain_rne3	=> { stream_url => 'http://195.10.10.207/rtve/radio3.mp3',
+				     iso639   => 'spa' },
+	      brazil_radnat_brasilia => { stream_url => 'http://radioslivres.radiobras.gov.br:8080/nacionalam.mp3', iso639 => 'por' });
 
 my %soutarry = ( transcode => { acodec     => 'mp3',
 				ab         => '128',
