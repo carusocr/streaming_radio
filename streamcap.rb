@@ -17,12 +17,17 @@ How I understand the Perl script to work:
 =end
 
 require 'nokogiri'
+require 'time'
 
+SRC_CONFIG = '/lre14/bin/streaming/getstream.xml'
 SU = '/bin/su'
 SU_NAME = 'walkerk'
 CVLC = '/usr/bin/cvlc'
+MPLAYER = '/usr/bin/mplayer'
+RECDIR = '/mnt/drobo/12/streaming';
+REC_DURATION = 1700;
 sources = Hash.new
-doc = Nokogiri::XML(File.open("getstream.xml"))
+doc = Nokogiri::XML(File.open(SRC_CONFIG))
 doc.xpath('//SrcDef').each do |node|
 	node.xpath('./@id')
 	srcinfo = node.xpath('child::node()').text.split("\n")
@@ -34,6 +39,8 @@ sources.keys.each do |s|
 	src_url = sources[s][1]
 	src_lang = sources[s][2]
 	src_port = sources[s][3]
-	cmd = "#{SU} -l #{SU_NAME} -c \"#{CVLC} --http-caching 3000 --codec ffmpeg #{src_url} --sout \" 2>&1 > /dev/null\n"
+	timestring = Time.now.strftime("%Y%m%d_%H%M%S")
+	cmd = "#{MPLAYER} #{src_url} -cache 8192 -dumpstream -dumpfile #{timestring}_#{src_name}_#{src_lang}.mp3\n"
+#	cmd = "#{SU} -l #{SU_NAME} -c \"#{CVLC} --http-caching 3000 --codec ffmpeg #{src_url} --sout \" 2>&1 > /dev/null\n"
 	puts cmd
 end
