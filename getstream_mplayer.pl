@@ -4,7 +4,7 @@
 use Proc::Killall;
 use constant SRCCFG => '/lre14/bin/streaming/getstream.xml';
 use constant SU => '/bin/su';
-use constant CVLC => '/usr/bin/cvlc';
+use constant MPLAYER => '/usr/bin/mplayer';
 use constant RECDIR => '/mnt/drobo/12/streaming';
 use constant CTRLHOST => 'localhost';
 use constant RECDUR => 1700;
@@ -77,14 +77,14 @@ my $soutstr = sprintf("'#%s{%s}:%s{%s}'",
 		      'std', 
 		      soutfmt( \%soutarry, 'std'));
 
-my @cvlc_args = ('--http-caching','3000',
-		 '--codec','ffmpeg',
-		 $url, '--sout',$soutstr );
+my @mplayer_args = ($url, '-cache 8192',
+		    '-dumpstream', '-dumpfile',
+		    $ofil);
 
 eval {
 
-    my $ccc = sprintf("%s -l %s -c %s%s%s 2>&1 >%s",
-		      SU, 'walkerk','"', join(' ',CVLC,@cvlc_args), '"', "/dev/null" );
+    my $mpc = sprintf("%s -l %s -c %s%s%s 2>&1 >%s",
+		      SU, 'walkerk','"', join(' ',MPLAYER,@mplayer_args), '"', "/dev/null" );
 
     $SIG{ALRM} = sub { 
 	my $rtn = killall('KILL',$ofil);
@@ -94,7 +94,7 @@ eval {
     alarm($duration);
 
     my $vlcpid = fork();
-    if($vlcpid == 0){ exec($ccc) }
+    if($vlcpid == 0){ exec($mpc) }
     for(;;){
 	$fsiz = -s $ofil;
 	print "$fsiz\n";
