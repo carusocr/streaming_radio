@@ -1,7 +1,6 @@
 
-for f in pubtalkctfm chiangmaifm srndhammayut thai_js100 \
-    lao_natlrad rana_fm radio_farda bangla_betar rj_israr
+for f in spain_rne3 mexico_pandashow colombia_unal brasil_radnat_brasilia
 do 
-    ./getstream.pl $f &
+    ./getstream_mplayer.pl $f &
 done
 
