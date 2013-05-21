@@ -2,27 +2,24 @@
 
 =begin
 
-How I understand the Perl script to work:
+Script to read in list of streaming radio sources from xml file, 
+use mplayer to download approximately 30 minutes of each source
+to a uniquely-named output file.
 
-1. Source hash initialized.
-2. Output hash initialized.
-3. Specific source passed via command line argument
-4. Output file variable set up via constants and output hash.
-5. clvc argument array joined in with cvlc inside eval statement:
-		   my $ccc = sprintf("%s -l %s -c %s%s%s 2>&1 >%s",
-          SU, SU_NAME,'"', join(' ',CVLC,@cvlc_args), '"', "/dev/null" );
-6. Once clvc command is set:
-			my $vlcpid = fork();
-			if ($vldpic==0){ exec($ccc)};
 =end
 
 require 'nokogiri'
+require 'time'
 
-SU = '/bin/su'
-SU_NAME = 'walkerk'
-CVLC = '/usr/bin/cvlc'
+abort "You must enter an iso639 language code!" unless ARGV[0]
+src_dir = "/lre14/bin/streaming"
+config_file = "getstream_#{ARGV[0]}.xml"
+su_name = 'walkerk'
+MPLAYER = '/usr/bin/mplayer'
+RECDIR = '/mnt/drobo/12/streaming';
+REC_DURATION = 1700;
 sources = Hash.new
-doc = Nokogiri::XML(File.open("getstream.xml"))
+doc = Nokogiri::XML(File.open("#{src_dir}/#{config_file}"))
 doc.xpath('//SrcDef').each do |node|
 	node.xpath('./@id')
 	srcinfo = node.xpath('child::node()').text.split("\n")
@@ -33,7 +30,7 @@ sources.keys.each do |s|
 	src_name = sources[s][0]
 	src_url = sources[s][1]
 	src_lang = sources[s][2]
-	src_port = sources[s][3]
-	cmd = "#{SU} -l #{SU_NAME} -c \"#{CVLC} --http-caching 3000 --codec ffmpeg #{src_url} --sout \" 2>&1 > /dev/null\n"
+	timestring = Time.now.strftime("%Y%m%d_%H%M%S")
+	cmd = "#{MPLAYER} #{src_url} -cache 8192 -dumpstream -dumpfile #{timestring}_#{src_name}_#{src_lang}.mp3\n"
 	puts cmd
 end
