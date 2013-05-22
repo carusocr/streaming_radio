@@ -27,6 +27,15 @@ doc.xpath('//SrcDef').each do |node|
 	srcinfo.map{|x| x.strip!}
 	sources["#{node.xpath('./@id')}"] = (srcinfo.reject{|x| x.length==0})
 end
+
+def download_stream(src_name,src_url,src_lang)
+	puts src_url, src_name, src_lang
+end
+
+# Loop over set of sources, check to make sure that 
+# no other download processes for that source are running,
+# kick off new process.
+
 sources.keys.each do |s|
 	src_name = sources[s][0]
 	src_url = sources[s][1]
@@ -36,8 +45,10 @@ sources.keys.each do |s|
 	#testing out process ID capture and forking.
 	src_pid = Process.fork {}
 	sources[s][3] = src_pid
-	puts "Source PID is #{src_pid} for #{src_name} download process.\n"
+	#puts "Source PID is #{src_pid} for #{src_name} download process.\n"
+	download_stream(src_name,src_url,src_lang)
 end
-sources.keys.each do |s|
-	puts sources[s][3]
-end
+#sources.keys.each do |s|
+#	puts sources[s][3]
+#end
+
