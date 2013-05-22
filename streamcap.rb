@@ -13,6 +13,7 @@ require 'time'
 
 abort "You must enter an iso639 language code!" unless ARGV[0]
 src_dir = "/lre14/bin/streaming"
+src_dir = "."
 config_file = "getstream_#{ARGV[0]}.xml"
 su_name = 'walkerk'
 MPLAYER = '/usr/bin/mplayer'
@@ -32,5 +33,11 @@ sources.keys.each do |s|
 	src_lang = sources[s][2]
 	timestring = Time.now.strftime("%Y%m%d_%H%M%S")
 	cmd = "#{MPLAYER} #{src_url} -cache 8192 -dumpstream -dumpfile #{timestring}_#{src_name}_#{src_lang}.mp3\n"
-	puts cmd
+	#testing out process ID capture and forking.
+	src_pid = Process.fork {}
+	sources[s][3] = src_pid
+	puts "Source PID is #{src_pid} for #{src_name} download process.\n"
+end
+sources.keys.each do |s|
+	puts sources[s][3]
 end
