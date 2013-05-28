@@ -1,0 +1,25 @@
+{
+    "argmap" : {
+	"rtmp"     : { "shn" : "-r", "quoted" : "true" },
+	"app"      : { "shn" : "-a", "quoted" : "true" },
+	"flashVer" : { "shn" : "-f", "quoted" : "true" },
+	"swfVfy"   : { "shn" : "-W", "quoted" : "true" },
+	"pageUrl"  : { "shn" : "-p", "quoted" : "true" },
+	"playpath" : { "shn" : "-y", "quoted" : "true" },
+	"flv"      : { "shn" : "-o", "quoted" : "false", "timestamp" : "true" },
+	"stop"     : { "shn" : "-B", "quoted" : "false" }
+    },
+    "srclst" : [ 
+	{
+	    "rtmp"     : "rtmp://88.190.41.98:1935/auriverde",
+	    "app"      : "auriverde" ,
+	    "flashVer" : "WIN 11,7,700,202",
+	    "swfVfy"   : "http://cdn.fabricahost.com.br/PlayerHD/player.swf?352",
+	    "pageUrl"  : "http://streaming.fabricahost.com.br/PlayerHD/popup.php?radio=auriverde",
+	    "playpath" : "default.stream",
+	    "flv"      : "brazil_auriverde.flv",
+	    "stop"     : 1780
+	}
+    ]
+}
+
