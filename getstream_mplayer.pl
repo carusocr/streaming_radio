@@ -47,6 +47,17 @@ my %srctbl = (pubtalkctfm     => { stream_url => 'http://80.245.113.11:8004',
 				     iso639   => 'spa' },
 	spain_rne3	=> { stream_url => 'http://195.10.10.207/rtve/radio3.mp3',
 				     iso639   => 'spa' },
+        dr_amistad      => { stream_url => 'http://arsradiotv.com:8040',
+                                     iso639   => 'spa' },
+        brazil_radio_clube      => { stream_url => 'http://173.192.81.140:8080/live',
+                                     iso639   => 'por' },
+        pr_universidad  => { stream_url => 'http://136.145.101.15:8062',
+                                     iso639   => 'spa' },
+        spain_onda_cero => { stream_url => 'http://stream.ondaceronoroeste.es:8000/ondacero.mp3',
+                                     iso639   => 'spa' },
+        brazil_radiomec  => { stream_url => 'http://radioslivres.radiobras.gov.br:8080/mecam.mp3',
+                                     iso639   => 'por' },
+
 	      brazil_radnat_brasilia => { stream_url => 'http://radioslivres.radiobras.gov.br:8080/nacionalam.mp3', iso639 => 'por' });
 
 my %soutarry = ( transcode => { acodec     => 'mp3',
