@@ -36,7 +36,7 @@ end
 
 def download_stream(cmd)
 #add actual download here
-	puts "Download command is #{cmd}\n"
+	puts "#{cmd}\n"
 end
 
 def killprocs(src_name) # <--- change this to src_url after testing! ***
